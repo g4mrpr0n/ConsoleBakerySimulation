@@ -1,42 +1,31 @@
 #pragma once
 #include "Meal.h"
+//do not touch anything here, it is done and ready for usage
 
 class Cookie : public Meal
 {
 	int flour, butter, sugar, egg, chocolate;
-	int amountCookies;
 public:
-	Cookie()
+	Cookie():flour(3),butter(1),sugar(2),egg(2),chocolate(2)
 	{
-		flour = 3; butter = 1; sugar = 2; egg = 2; chocolate = 2;
-		amountCookies = 0;
 	}
-	int getFlour()
+	int getFlour() const
 	{
 		return flour;
 	}
-	int getButter()
+	int getButter() const
 	{
 		return butter;
 	}
-	int getSugar()
+	int getSugar() const
 	{
 		return sugar;
 	}
-	int getEgg() {
+	int getEgg() const {
 		return egg;
 	}
-	int getChocolate()
+	int getChocolate() const
 	{
 		return chocolate;
 	}
-	int getCookieamount()
-	{
-		return amountCookies;
-	}
-	void setCookieAmount()
-	{
-		amountCookies++;
-	}
 };
-

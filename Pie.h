@@ -1,96 +1,32 @@
 #pragma once
 #include "Meal.h"
+//do not touch anything here, it is done and ready for usage
 
 class Pie : public Meal
 {
-	enum ingredient {
-		Apple, Cherry, Pumpkin
-	};
-	int apples, cherry, pumpkin, butter, flour, sugar, egg;
-	struct amount{
-		int amountApplePie;
-		int amountCherryPie;
-		int amountPumpkinPie;
-	}a;
+	int flour, butter, sugar, egg, apples;
 public:
-	Pie() = default;
-	Pie(ingredient ing)
-	{
-		if (ing == Apple)
-		{
-			apples = 6;
-			butter = 2;
-			flour = 1;
-			sugar = 1;
-			egg = 1;
-		}
-		else if (ing == Cherry)
-		{
-			cherry = 4;
-			sugar = 1;
-			butter = 1;
-			egg = 1;
-			flour = 1;
-		}
-		else {
-			pumpkin = 1;
-			egg = 4;
-			sugar = 1;
-			butter = 0;
-			flour = 3;
-		}
-	}
-	int getApples()
-	{
-		return apples;
-	}
-	int getCherry()
-	{
-		return cherry;
-	}
-	int getPumpkin()
-	{
-		return pumpkin;
-	}
-	int getButter()
-	{
-		return butter;
-	}
-	int getFlour()
+	Pie():apples(6),butter(2),flour(1),sugar(1),egg(1)
+	{}
+	int getFlour() const 
 	{
 		return flour;
 	}
-	int getSugar()
+	int getButter() const
+	{
+		return butter;
+	}
+	int getSugar() const
 	{
 		return sugar;
 	}
-	int getEgg()
+	int getEgg() const
 	{
 		return egg;
 	}
-	int getAmountApplePie()
+	int getApples() const
 	{
-		return a.amountApplePie;
-	}
-	int getAmountCherryPie()
-	{
-		return a.amountCherryPie;
-	}
-	int getAmountPumpkinPie()
-	{
-		return a.amountPumpkinPie;
-	}
-	void setAmountApplePie()
-	{
-		a.amountApplePie++;
-	}
-	void setAmountCherryPie()
-	{
-		a.amountCherryPie++;
-	}
-	void setAmountPumpkinPie()
-	{
-		a.amountPumpkinPie++;
+		return apples;
 	}
 };
 

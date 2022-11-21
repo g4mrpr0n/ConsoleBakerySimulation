@@ -1,26 +1,21 @@
 #pragma once
 #include <string>
 #include "Universe.h"
+//do not touch anything here, it is done and ready for usage
 
-class Meal : public Universe
+class Meal : public Universe 
 {
 	enum types {
-		Snacks, 
-		Desserts, 
-		Pastry, 
-		Pies, 
-		Stew, 
-		Steaks, 
-		Baked,
-	};
+		Pastry,
+		Pies
+	}mealtype;
 	struct nutrients {
-		double protein, fat, carbs;
-	};
-	double calories;
+		int protein, fat, carbs;
+	}nutr;
+	int calories;
 public:
 	Meal() = default;
 	Meal(types mealtype) {
-		//basic apple pie
 		if (mealtype == Pies)
 		{
 			nutrients nr;
@@ -29,5 +24,32 @@ public:
 			nr.carbs = 47;
 			calories = 320;
 		}
+		else {
+			nutrients nr;
+			nr.fat = 12;
+			nr.protein = 3;
+			nr.carbs = 23;
+			calories = 194;
+		}
+	}
+	int getProtein() const
+	{
+		return nutr.protein;
+	}
+	int getCarbs() const
+	{
+		return nutr.carbs;
+	}
+	int getFat() const
+	{
+		return nutr.fat;
+	}
+	int getCalories() const
+	{
+		return calories;
+	}
+	types getType() const
+	{
+		return mealtype;
 	}
 };

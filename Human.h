@@ -1,21 +1,18 @@
 #pragma once
 #include <string>
 #include "Universe.h"
+//do not touch anything here, it is done and ready for usage
 
-class Human : public Universe
+class Human: public Universe
 {
 	std::string name, surname;
-	unsigned short age;
+	unsigned short int age;
 	bool gender;
-	
 public:
-	Human()
+	Human(): name("None"), surname("None"), age(0), gender(0)
 	{
-		name = surname = "None";
-		age = 0;
-		gender = 0;
 	}
-	Human(std::string name, std::string surname, unsigned short age, bool gender)
+	Human(std::string name, std::string surname, unsigned short int age, bool gender)
 		: age(age), name(name), surname(surname), gender(gender)
 	{
 	}
@@ -27,7 +24,7 @@ public:
 	{
 		return surname;
 	}
-	unsigned short getAge() const
+	unsigned short int getAge() const
 	{
 		return age;
 	}
