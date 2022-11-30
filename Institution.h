@@ -5,18 +5,18 @@
 
 class Institution : public Universe
 {
-	std::string name, location, number;
+	const char* name, *location, *number;
 	unsigned short int rating;
 protected:
-	void setName(std::string name)
+	void setName(const char name[])
 	{
 		this->name = name;
 	}
-	void setLocation(std::string location)
+	void setLocation(const char location[])
 	{
 		this->location = location;
 	}
-	void setNumber(std::string number)
+	void setNumber(const char number[])
 	{
 		this->number = number;
 	}
@@ -25,24 +25,21 @@ protected:
 		this->rating = rating;
 	}
 public:
-	Institution()
-	{
-		name = number = location = "None";
-		rating = 0;
-	}
-	Institution(std::string name, std::string location, std::string number, unsigned short int rating)
+	Institution() = default;
+
+	Institution(const char name[], const char location[], const char number[], unsigned short int rating)
 		: name(name), location(location), number(number), rating(rating)
 	{
 	}
-	std::string getName() const
+	const char *getName() const
 	{
 		return name;
 	}
-	std::string getLocation() const
+	const char *getLocation() const
 	{
 		return location;
 	}
-	std::string getNumber() const
+	const char *getNumber() const
 	{
 		return number;
 	}

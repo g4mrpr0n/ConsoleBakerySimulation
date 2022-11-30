@@ -1,6 +1,17 @@
 #pragma once
-//time implementation, last thing that needs to be done
+#include <unistd.h>
+#include <time.h>
+#include <cmath>
 
 class Universe
 {
+public:
+
+    int day;
+    clock_t tStart;
+    double elapsedTime;
+    Universe() : day(0)
+    {
+        tStart = clock(); 
+    }
 };

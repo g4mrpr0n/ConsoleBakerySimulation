@@ -5,20 +5,25 @@
 
 class Human: public Universe
 {
-	std::string name, surname;
-	unsigned short int age;
+protected:
+	std::string familyname, surname;
+	unsigned short int age, yearsExperience;
 	bool gender;
 public:
-	Human(): name("None"), surname("None"), age(0), gender(0)
+	Human(): familyname("None"), surname("None"), age(0), gender(0)
 	{
 	}
 	Human(std::string name, std::string surname, unsigned short int age, bool gender)
-		: age(age), name(name), surname(surname), gender(gender)
+		: age(age), familyname(name), surname(surname), gender(gender)
 	{
 	}
-	std::string getName() const
+	Human(std::string name, std::string surname, unsigned short int age, unsigned short int yearsExperience, bool gender)
+		: age(age), familyname(name), surname(surname), yearsExperience(yearsExperience), gender(gender)
 	{
-		return name;
+	}
+	std::string getFamilyName() const
+	{
+		return familyname;
 	}
 	std::string getSurname() const
 	{
@@ -27,6 +32,10 @@ public:
 	unsigned short int getAge() const
 	{
 		return age;
+	}
+	unsigned short int getYearsExperience() const
+	{
+		return yearsExperience;
 	}
 	bool getGender() const
 	{

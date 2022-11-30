@@ -5,7 +5,8 @@
 class Customer : public Human
 {
 	int budget;
-	Customer(const Human& h, int budget) :budget(budget), Human(h.getName(), h.getSurname(), h.getAge(), h.getGender())
+	Customer(std::string name, std::string surname, unsigned short int age, bool gender, int budget) 
+	:budget(budget), Human(name,surname,age,gender)
 	{
 	}
 	int getBudget() const
