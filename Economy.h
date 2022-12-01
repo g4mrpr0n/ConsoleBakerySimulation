@@ -3,9 +3,9 @@
 class Economy
 {
 public:
-	double money, profit, loss;
+	double money, profit, loss, initialBudget=20000;
 	const double sugarPrice = 1, eggPrice = 1, flourPrice = 1.5, butterPrice = 0.5, chocolatePrice = 2;
-	const double cookiePrice = 50;
-	Economy() :money(50000), profit(0), loss(0) {
+	Economy() :profit(0), loss(0) {
+		money = initialBudget;
 	}
 };

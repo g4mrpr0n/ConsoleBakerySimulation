@@ -9,7 +9,6 @@ class Institution : public Universe
 
 public:
 	Institution() = default;
-
 	Institution(const char name[], const char location[], const char number[], unsigned short int rating)
 		: name(name), location(location), number(number), rating(rating)
 	{
@@ -30,7 +29,6 @@ public:
 	{
 		return rating;
 	}
-
 	void setRating(unsigned short rating)
 	{
 		this->rating = rating;

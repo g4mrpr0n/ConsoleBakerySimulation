@@ -5,7 +5,6 @@
 class Universe
 {
 public:
-
     int day;
     clock_t tStart;
     double elapsedTime;
