@@ -1,2 +1,2 @@
 all:
-	g++ Source.cpp -lncurses -o sim 
+	g++ Source.cpp -o sim 

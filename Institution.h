@@ -7,23 +7,6 @@ class Institution : public Universe
 {
 	const char* name, *location, *number;
 	unsigned short int rating;
-protected:
-	void setName(const char name[])
-	{
-		this->name = name;
-	}
-	void setLocation(const char location[])
-	{
-		this->location = location;
-	}
-	void setNumber(const char number[])
-	{
-		this->number = number;
-	}
-	void setRating(unsigned short int rating)
-	{
-		this->rating = rating;
-	}
 public:
 	Institution() = default;
 

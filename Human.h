@@ -13,10 +13,6 @@ public:
 	Human(): familyname("None"), surname("None"), age(0), gender(0)
 	{
 	}
-	Human(std::string name, std::string surname, unsigned short int age, bool gender)
-		: age(age), familyname(name), surname(surname), gender(gender)
-	{
-	}
 	Human(std::string name, std::string surname, unsigned short int age, unsigned short int yearsExperience, bool gender)
 		: age(age), familyname(name), surname(surname), yearsExperience(yearsExperience), gender(gender)
 	{

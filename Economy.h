@@ -1,8 +1,7 @@
 #pragma once
-#include "Universe.h"
 //ok for now
 
-class Economy : public Universe 
+class Economy 
 {
 public:
 	double money, profit, loss;
