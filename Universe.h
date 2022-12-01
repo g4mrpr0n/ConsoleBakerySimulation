@@ -1,5 +1,4 @@
 #pragma once
-#include <unistd.h>
 #include <time.h>
 #include <cmath>
 
@@ -12,6 +11,6 @@ public:
     double elapsedTime;
     Universe() : day(0)
     {
-        tStart = clock(); 
+        tStart = clock();
     }
 };

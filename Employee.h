@@ -3,12 +3,12 @@
 #include "Human.h"
 #include "Bakery.h"
 
-class Employee :  public Human, public Bakery
+class Employee : public Human, public Bakery
 {
 	double salary;
 	std::string position;
 	int id;
-	
+
 public:
 	Employee() = default;
 
@@ -16,31 +16,33 @@ public:
 	{
 		this->id = id;
 		this->familyname = name;
-        this->surname = surname;
-        this->age = age;
-        this->yearsExperience = years;
-        this->gender = gender;
+		this->surname = surname;
+		this->age = age;
+		this->yearsExperience = years;
+		this->gender = gender;
 		this->salary = salary;
 		this->position = theposition;
 	}
 
 	bool employeeHiringRNG()
 	{
-		std::random_device rd;	
-		std::mt19937 gen(rd());	
+		srand(time(NULL));
+		std::random_device rd;
+		std::mt19937 gen(rd());
 		std::uniform_real_distribution<> dist(0, 9.999);
 		int upperbound = 10;
 		double midrange = upperbound / 2 - employeecounter * 0.05;
 		double rangeValue = dist(gen);
 		if (rangeValue < midrange)
-		return true;
+			return true;
 		else return false;
 	}
 
 	bool employeeActionRNG()
 	{
-		std::random_device rd;	
-		std::mt19937 gen(rd());	
+		srand(time(NULL));
+		std::random_device rd;
+		std::mt19937 gen(rd());
 		std::uniform_real_distribution<> dist(0, 10);
 		int upperbound = 10;
 		double midrange = upperbound / 2 + getYearsExperience() * 0.5;
@@ -49,41 +51,53 @@ public:
 		else return false;
 	}
 
-	void restockIngredients()
+	bool refundRNG()
 	{
-		if (ia.sugar <= c.sugar - 500)
+		srand(time(NULL));
+		std::random_device rd;
+		std::mt19937 gen(rd());
+		std::uniform_real_distribution<> dist(0, 10);
+		double midrange = 2 - getYearsExperience() * 0.15;
+		double rangeValue = dist(gen);
+		if (rangeValue < midrange) return true;
+		else return false;
+	}
+
+	void restockIngredients(Bakery &b)
+	{
+		if (b.ia.sugar <= b.c.sugar - 200)
 		{
-			ia.sugar += 500;
-			money = money - 500 * sugarPrice;
-			loss += 500 * sugarPrice;
+			b.ia.sugar += 200;
+			b.money = b.money - 200 * sugarPrice;
+			b.loss += 200 * sugarPrice;
 		}
-		if (ia.flour <= c.flour - 500)
+		if (b.ia.flour <= b.c.flour - 200)
 		{
-			ia.flour += 500;
-			money = money - 500 * flourPrice;
-			loss += 500 * flourPrice;
+			b.ia.flour += 200;
+			b.money = b.money - 200 * flourPrice;
+			b.loss += 200 * flourPrice;
 		}
-		if (ia.egg <= c.egg - 500)
+		if (b.ia.egg <= b.c.egg - 200)
 		{
-			ia.egg += 500;
-			money = money - 500 * eggPrice;
-			loss += 500 * eggPrice;
+			b.ia.egg += 200;
+			b.money = b.money - 200 * eggPrice;
+			b.loss += 200 * eggPrice;
 		}
-		if (ia.butter <= c.butter - 500)
+		if (b.ia.butter <= b.c.butter - 200)
 		{
-			ia.butter += 500;
-			money = money - 500 * butterPrice;
-			loss += 500 * butterPrice;
+			b.ia.butter += 200;
+			b.money = b.money - 200 * butterPrice;
+			b.loss += 200 * butterPrice;
 		}
-		if (ia.chocolate <= c.chocolate - 500)
+		if (b.ia.chocolate <= b.c.chocolate - 200)
 		{
-			ia.chocolate += 500;
-			money = money - 500 * chocolatePrice;
-			loss += 500 * chocolatePrice;
+			b.ia.chocolate += 200;
+			b.money = b.money - 200 * chocolatePrice;
+			b.loss += 200 * chocolatePrice;
 		}
 	}
 
-	bool createCookie(Bakery bakery)
+	bool createCookie(Bakery &bakery)
 	{
 
 		int flour = bakery.cookies.flour;
@@ -93,41 +107,42 @@ public:
 		int chocolate = bakery.cookies.chocolate;
 		if (employeeActionRNG())
 		{
-			if ((flour <= ia.flour) && (butter <= ia.butter) && (sugar <= ia.sugar) && (egg <= ia.egg) && (chocolate <= ia.chocolate))
+			if ((flour <= bakery.ia.flour) && (butter <= bakery.ia.butter) && (sugar <= bakery.ia.sugar) && (egg <= bakery.ia.egg) && (chocolate <= bakery.ia.chocolate))
 			{
 				bakery.amountCookies++;
+				bakery.cookiesMade++;
 			}
 		}
-		if ((flour <= ia.flour) && (butter <= ia.butter) && (sugar <= ia.sugar) && (egg <= ia.egg) && (chocolate <= ia.chocolate))
+		if ((flour <= bakery.ia.flour) && (butter <= bakery.ia.butter) && (sugar <= bakery.ia.sugar) && (egg <= bakery.ia.egg) && (chocolate <= bakery.ia.chocolate))
 		{
-			ia.flour -= flour;
-			ia.butter -= butter;
-			ia.sugar -= sugar;
-			ia.egg -= egg;
-			ia.chocolate -= chocolate;
+			bakery.ia.flour -= flour;
+			bakery.ia.butter -= butter;
+			bakery.ia.sugar -= sugar;
+			bakery.ia.egg -= egg;
+			bakery.ia.chocolate -= chocolate;
 			return true;
 		}
-		else {
-			return false;
-		}
+		else return false;
 	}
-	void sellCookie()
+
+	void sellCookie(Bakery &b)
 	{
-		bool sold=0;
-		if (employeeActionRNG()){
-			amountCookies--;
-			money+=cookiePrice+getYearsExperience()*10;
-			cookiesSold++;
-			sold=1;
+		bool sold = 0;
+		if (employeeActionRNG()) {
+			b.amountCookies--;
+			b.money += cookiePrice + getYearsExperience() * 10;
+			b.cookiesSold++;
+			sold = 1;
 		}
 		//refund
-		if (employeeActionRNG() && sold==1)
+		if (refundRNG() && sold == 1)
 		{
-			money-=cookiePrice;
-			loss+=cookiePrice;
-			refunds++;
+			b.money -= cookiePrice;
+			b.loss += cookiePrice;
+			b.refunds++;
 		}
 	}
+
 	int getID()
 	{
 		return id;

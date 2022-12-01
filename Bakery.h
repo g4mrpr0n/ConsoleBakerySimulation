@@ -1,15 +1,13 @@
 #pragma once
 #include "Institution.h"
 #include "Economy.h"
-#include <vector>
-//ok for now
 
 class Bakery : public Institution, public Economy
 {
 public:
 	int employeecounter = 0, vendorCounter = 0, bakerCounter = 0, vendor[70], baker[70];
-	int customerSatisfied=0, cookiesMade=0;
-	struct Cookie{
+	int customerSatisfied = 0, cookiesMade = 0;
+	struct Cookie {
 		int flour = 3, butter = 1, sugar = 2, egg = 2, chocolate = 2;
 	}cookies;
 	struct Capacity {
@@ -21,7 +19,6 @@ public:
 	}ia;
 	int amountCookies = 0, cookiesSold = 0, refunds = 0;
 	Bakery() = default;
-	Bakery(const char *name, const char *location, const char *number, unsigned short int rating)
+	Bakery(const char* name, const char* location, const char* number, unsigned short int rating)
 		: Institution(name, location, number, rating) {}
-	
 };
